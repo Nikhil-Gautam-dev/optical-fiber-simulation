@@ -1,4 +1,3 @@
-from functools import reduce
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -251,7 +250,7 @@ def install_packages():
 
 if __name__ == "__main__":
     install_packages()
-    
+
     # Initialize CSV and load existing data
     initialize_csv()
     load_data_from_csv()
