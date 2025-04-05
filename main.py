@@ -7,6 +7,8 @@ from tkinter import messagebox
 from tkinter.ttk import Treeview, Style
 import csv
 import os
+import subprocess
+import sys
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -230,8 +232,28 @@ for col in columns:
 
 tree.pack(fill="both", expand=True)
 
-# Initialize CSV and load existing data
-initialize_csv()
-load_data_from_csv()
 
-root.mainloop()
+
+def install_packages():
+        """Install required packages if not already installed."""
+        required_packages = [
+            "numpy", 
+            "pandas", 
+            "matplotlib", 
+            "customtkinter", 
+            "tk"
+        ]
+        for package in required_packages:
+            try:
+                __import__(package)
+            except ImportError:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+if __name__ == "__main__":
+    install_packages()
+    
+    # Initialize CSV and load existing data
+    initialize_csv()
+    load_data_from_csv()
+
+    root.mainloop()
